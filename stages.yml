@@ -1,0 +1,42 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Multiple Env Stages
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the "main" branch
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  DEV:
+    runs-on: ubuntu-latest
+    environment: DEV
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Run a one-line script
+        run: echo This is Dev!
+
+  QA:
+    runs-on: ubuntu-latest
+    environment: QA
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Run a one-line script
+        run: This is QA!
+
+  Staging:
+    runs-on: ubuntu-latest
+    environment: Staging
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Run a one-line script
+        run: This is Staging!
