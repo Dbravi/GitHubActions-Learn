@@ -10,31 +10,37 @@ jobs:
   DEV:
     runs-on: ubuntu-latest
     environment: DEV
+    env:
+      URL: ${{ vars.MSG }}
 
     steps:
       - uses: actions/checkout@v4
 
       - name: Run a one-line script
-        run: echo This is Dev!
+        run: echo ${{ vars.MSG }}
 
   QA:
     runs-on: ubuntu-latest
     environment: QA
+    env:
+      URL: ${{ vars.MSG }}
     needs: DEV
 
     steps:
       - uses: actions/checkout@v4
 
       - name: Run a one-line script
-        run: echo This is QA!
+        run: echo ${{ vars.MSG }}
 
   Staging:
     runs-on: ubuntu-latest
     environment: Staging
+    env:
+      URL: ${{ vars.MSG }}
     needs: QA
 
     steps:
       - uses: actions/checkout@v4
 
       - name: Run a one-line script
-        run: echo This is Staging!
+        run: echo ${{ vars.MSG }}
